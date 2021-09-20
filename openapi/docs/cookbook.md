@@ -1,15 +1,15 @@
-# CookBook REST API
+## CookBook REST API
 This is an API that allows you to access a collectively created CookBooks.
 Hello from new GitHub Action in redback-github-actions :D
 
-## Features
+### Features
 
 * Create, improve and share your recipes with the community.
 * Backed by massive ingredient database that contains basically every possible edible thing with descriptions containing tips written by renowned chefs.
 * Automatically translate the steps of the recipe into various languages
 * **Actually useful error messages**
 
-## Authentication
+### Authentication
 
 The CookBook API uses API keys to authenticate requests. You can view and manage your API keys in the CookBook Dashboard.
 
