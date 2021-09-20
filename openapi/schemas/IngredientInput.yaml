@@ -1,0 +1,13 @@
+type: object
+properties:
+  description:
+    type: string
+    description: the new description for the ingredient that is being mutated!!
+  name:
+    type: string
+    description: the new name for the ingredient that is being mutated
+  type:
+    type: string
+    description: the new type for the ingredient that is being mutated
+example:
+  description: this is a new description

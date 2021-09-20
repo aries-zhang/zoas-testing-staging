@@ -1,0 +1,58 @@
+parameters:
+- name: id
+  in: path
+  description: the id of the resource to act on
+  required: true
+  schema:
+    type: string
+    example: "1223"
+  example: "1223"
+get:
+  operationId: GetRecipeById
+  tags:
+  - Recipes
+  summary: Retrieve recipe
+  description: Retrieves the recipe corresponding to the given id
+  responses:
+    "200":
+      description: Get a single recipe object
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              recipe:
+                $ref: ../../../schemas/RecipeObject.yaml
+          examples:
+            default:
+              $ref: ../../../examples/RecipeByIdExample.yaml
+      x-zoas-tests:
+        skip:
+        - all
+    "403":
+      description: User is forbidden to access this resource. This can happen when
+        trying to access a recipe that was marked as private.
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              errors:
+                type: array
+                items:
+                  $ref: ../../../schemas/ApiErrorObject.yaml
+          examples:
+            default:
+              $ref: ../../../examples/ApiForbiddenErrorExample.yaml
+  x-code-samples:
+  - label: cURL
+    lang: sh
+    source: |-
+      curl https://api.cookbook.com/api/v2/recipes/1.json \
+      -u sk_test_4eC39HqLyjWDarjtT1zdp7dc
+x-zoas-tests:
+  skip:
+  - json_schema
+  - status_code
+  ignore:
+  - headers_inclusion

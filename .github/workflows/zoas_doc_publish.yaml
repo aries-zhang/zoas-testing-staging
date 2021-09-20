@@ -1,0 +1,37 @@
+name: ZOAS documentation publish
+on:
+  repository_dispatch:
+    types: publish
+env:
+  ZOAS_RELEASE_TAG: latest
+
+jobs:
+  main:
+    name: Publish
+    runs-on: [self-hosted,zendesk-stable]
+    steps:
+      - name: Checkout source
+        uses: zendesk/checkout@v2
+        with:
+          token: ${{ secrets.ORG_GITHUB_WRITE_TOKEN }}
+      - name: Checkout action
+        uses: zendesk/checkout@v2
+        with:
+          repository: zendesk/redback-github-actions
+          token: ${{ secrets.ORG_GITHUB_WRITE_TOKEN }}
+          path: .github/redback-github-actions
+      - name: Generate documents
+        env:
+          GITHUB_ACCESS_TOKEN: ${{ secrets.ORG_GITHUB_WRITE_TOKEN }}
+        uses: ./.github/redback-github-actions/actions/zoas-doc-publish
+        with:
+          documentBaseDir: docs/
+          visibility: "\"\""
+          mappingPath: .github/workflows/hello.csv
+      - name: Slack notify on failure
+        if: failure()
+        uses: zendesk/ga/slack-post-msg@v2
+        with:
+          channel: CS0C422GJ
+          slack-auth-token: ${{ secrets.ORG_SLACK_TOKEN }}
+          status: ${{ job.status }}

@@ -1,0 +1,34 @@
+type: object
+properties:
+  action:
+    type: string
+    description: the new action for the step being created/mutated.
+    enum:
+    - blend
+    - bake
+    - pan_fry
+    - stir_fry
+    - sous_vide
+    - boil
+    - steam
+    - chop
+    - slice
+    - grate
+    - mix
+    - season
+    - mash
+  description:
+    type: string
+    description: the new description for the step being created/mutated
+  priority:
+    type: string
+    description: the new priority for the step being created/mutated
+    enum:
+    - essential
+    - optional
+  recipe:
+    type: string
+    description: the recipe for the step being created, once set it cannot be mutated.
+  version:
+    type: integer
+    description: the new version for the step being created/mutated

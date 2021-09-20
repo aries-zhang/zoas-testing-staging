@@ -1,0 +1,152 @@
+openapi: 3.0.2
+info:
+  title: CookBook REST API
+  description: CookBook REST API allows you to manage your own recipes! :)
+  version: "1.0"
+tags:
+- name: Recipes
+  externalDocs:
+    url: docs/tags/Recipes.md
+- name: Ingredients
+- name: Steps
+  externalDocs:
+    url: docs/tags/Steps.md
+paths:
+  /api/v2/ingredients/{id}:
+    $ref: paths/v2/ingredients/ingredients_by_id.yaml
+  /api/v2/recipes:
+    $ref: paths/v2/recipes/recipes.yaml
+  /api/v2/recipes/{id}:
+    $ref: paths/v2/recipes/recipes_by_id.yaml
+  /api/v2/steps:
+    $ref: paths/v2/steps/steps.yaml
+  /api/v2/steps/{id}:
+    $ref: paths/v2/steps/steps_by_id.yaml
+components:
+  schemas:
+    ApiErrorObject:
+      $ref: schemas/ApiErrorObject.yaml
+    IngredientInput:
+      $ref: schemas/IngredientInput.yaml
+    IngredientObject:
+      $ref: schemas/IngredientObject.yaml
+    NutritionalValueObject:
+      $ref: schemas/NutritionalValueObject.yaml
+    RecipeObject:
+      $ref: schemas/RecipeObject.yaml
+    StepInput:
+      $ref: schemas/StepInput.yaml
+    StepObject:
+      $ref: schemas/StepObject.yaml
+  parameters:
+    Api-Version:
+      name: Api-Version
+      in: header
+      description: The version of the API to use
+      schema:
+        type: string
+        format: date
+        example: "2019-12-03"
+    IdParam:
+      name: id
+      in: path
+      description: the id of the resource to act on
+      required: true
+      schema:
+        type: string
+        example: "1223"
+      example: "1223"
+    RecipeSortParam:
+      name: sort
+      in: query
+      description: the key to sort recipes by
+      required: true
+      schema:
+        type: string
+        enum:
+        - name
+        - diet
+      example: diet
+  examples:
+    ApiConflictErrorExample:
+      $ref: examples/ApiConflictErrorExample.yaml
+    ApiForbiddenErrorExample:
+      $ref: examples/ApiForbiddenErrorExample.yaml
+    ApiNotFoundErrorExample:
+      $ref: examples/ApiNotFoundErrorExample.yaml
+    IngredientByIdExample:
+      $ref: examples/IngredientByIdExample.yaml
+    RecipeByIdExample:
+      $ref: examples/RecipeByIdExample.yaml
+    UpdateStepByIdExample:
+      $ref: examples/UpdateStepByIdExample.yaml
+    UpdateStepByIdRequestBodyExample:
+      $ref: examples/UpdateStepByIdRequestBodyExample.yaml
+  requestBodies:
+    CreateStepRequest:
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              action:
+                type: string
+                description: the new action for the step being created/mutated
+                enum:
+                - blend
+                - bake
+                - pan_fry
+                - stir_fry
+                - sous_vide
+                - boil
+                - steam
+                - chop
+                - slice
+                - grate
+                - mix
+                - season
+                - mash
+              description:
+                type: string
+                description: the new description for the step being created/mutated
+              priority:
+                type: string
+                description: the new priority for the step being created/mutated
+                enum:
+                - essential
+                - optional
+              recipe:
+                type: string
+                description: the recipe for the step being created, once set it cannot
+                  be mutated.
+              version:
+                type: integer
+                description: the new version for the step being created/mutated
+          examples:
+            default:
+              value:
+                action: sous_vide
+                description: Cook at 30C for 300 hours
+                priority: essential
+                recipe: "123"
+                version: 1
+  headers:
+    Rate-Limit:
+      description: The rate limit of this endpoint
+      schema:
+        type: string
+      example: "1250"
+  securitySchemes:
+    BearerAuth:
+      type: http
+      in: header
+      scheme: bearer
+security:
+- BearerAuth:
+  - recipes:read
+  - recipes:write
+externalDocs:
+  url: docs/cookbook.md
+x-zendesk-owner:
+  channel: redback-team
+  name: redback

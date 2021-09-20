@@ -1,0 +1,52 @@
+title: Recipe Steps
+type: object
+properties:
+  action:
+    type: string
+    description: the main action that needs to be performed in this step, useful for
+      future functionality of filtering recipes by actions
+    enum:
+    - blend
+    - bake
+    - pan_fry
+    - stir_fry
+    - sous_vide
+    - boil
+    - steam
+    - chop
+    - slice
+    - grate
+    - mix
+    - season
+    - mash
+  description:
+    type: string
+  id:
+    type: string
+    description: the id of the step
+  priority:
+    type: string
+    description: indicates if this step is essential or optional
+    enum:
+    - essential
+    - optional
+  recipe_id:
+    type: string
+    description: the id of the recipe this step belongs to
+    minLength: 1
+  version:
+    type: integer
+    description: the version of the step
+    minimum: 1
+additionalProperties:
+  type: string
+example:
+  action: chop
+  description: chop the eggplant
+  id: "234"
+  priority: essential
+  recipe_id: "87291"
+  version: 3
+externalDocs:
+  url: ../docs/schemas/StepObject.md
+x-resourceId: Steps

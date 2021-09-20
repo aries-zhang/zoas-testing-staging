@@ -1,0 +1,5 @@
+summary: UpdateStepById response
+description: A common succesful response for a UpdateStepById operation
+value:
+  action: mash
+  version: 2

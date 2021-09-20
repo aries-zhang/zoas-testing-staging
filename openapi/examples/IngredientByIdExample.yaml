@@ -1,0 +1,9 @@
+summary: GetIngredientById response
+description: A common succesful response for a GetIngredientById operation
+value:
+  ingredient:
+    description: Turmeric (Curcuma longa) is a spice, widely used in Asian cooking.
+      It is a rhizomatous herbaceous perennial plant, in the ginger family, Zingiberaceae.
+    id: "689"
+    name: Turmeric
+    type: spice

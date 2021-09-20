@@ -1,0 +1,6 @@
+description: A 409 Conflict response
+value:
+  errors:
+  - code: UpdateConflict
+  - source: version 2
+  - title: there was a conflict when update step version 2

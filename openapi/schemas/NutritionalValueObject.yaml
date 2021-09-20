@@ -1,0 +1,20 @@
+type: object
+description: |
+  The nutritional value object includes information useful to determine if what you are eating is suitable for your health goals.
+properties:
+  calories:
+    type: number
+    format: float
+    description: the calories of the item, measured in kcal..
+  dietary_fiber:
+    type: number
+    format: float
+    description: the calories of the item, measured in grams
+  protein:
+    type: number
+    format: float
+    description: the calories of the item, measured in grams
+  sodium:
+    type: number
+    format: float
+    description: the calories of the item, measured in milligrams

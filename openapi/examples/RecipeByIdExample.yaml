@@ -1,0 +1,55 @@
+summary: GetRecipeById successful response
+description: A common succesful response for a GetRecipeById operation
+value:
+  recipe:
+    author_id: "91829"
+    created_at: "2017-11-29"
+    id: "12345"
+    ingredients:
+    - amount: 1 kg
+      ingredient:
+        calories: 77
+        dietary_fiber: 2.2
+        id: "1"
+        name: potatoes
+        protein: 2
+        sodium: 6
+        type: vegetable
+    - amount: 1 cup
+      ingredient:
+        calories: 42
+        id: "2"
+        name: milk
+        protein: 3.4
+        sodium: 44
+        type: dairy
+    - amount: 1/3 cup
+      ingredient:
+        calories: 717
+        id: "3"
+        name: unsalted butter
+        protein: 0.9
+        sodium: 11
+        type: fat
+    is_private: false
+    name: Creamy Mashed Potatoes
+    steps:
+    - action: boil
+      description: Place potatoes in a large pot and cover with cold, salted water
+        by an inch. Bring to a boil, reduce heat down to medium-low and allow to simmer
+        until fork tender (about 15-20 minutes).
+      id: "39723"
+      priority: essential
+    - action: mix
+      description: Drain cooked potatoes, add in the hot milk and butter.
+      id: "20001"
+      priority: essential
+    - action: mash
+      description: Mash the potatoes with a potato masher until smooth, adding a little
+        extra milk if needed.
+      id: "2981"
+      priority: essential
+    - action: season
+      description: Add salt and pepper to taste
+      id: "21800"
+      priority: optional

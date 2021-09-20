@@ -1,0 +1,16 @@
+type: object
+properties:
+  code:
+    type: string
+    description: for some errors that could be handled programatically, a short string
+      indicating the error
+  source:
+    type: string
+    description: the source object for errors returned on a request involving a source
+  title:
+    type: string
+    description: a human readable message providing more details about the error
+example:
+  code: something-went-wrong
+  source: some-resource
+  title: Something Went Wrong

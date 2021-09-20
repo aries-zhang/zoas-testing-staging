@@ -1,0 +1,89 @@
+post:
+  operationId: CreateStep
+  tags:
+  - Steps
+  summary: Create a step
+  description: Creates a step for a recipe
+  parameters:
+  - name: Idempotency-Key
+    in: header
+    description: Idempotency key for safely retrying an update without accidentally
+      performing the same operation twice
+    schema:
+      type: string
+      example: SrJylpBhtr7kJWMJ
+  requestBody:
+    content:
+      application/json:
+        schema:
+          type: object
+          properties:
+            action:
+              type: string
+              description: the new action for the step being created/mutated
+              enum:
+              - blend
+              - bake
+              - pan_fry
+              - stir_fry
+              - sous_vide
+              - boil
+              - steam
+              - chop
+              - slice
+              - grate
+              - mix
+              - season
+              - mash
+            description:
+              type: string
+              description: the new description for the step being created/mutated
+            priority:
+              type: string
+              description: the new priority for the step being created/mutated
+              enum:
+              - essential
+              - optional
+            recipe:
+              type: string
+              description: the recipe for the step being created, once set it cannot
+                be mutated.
+            version:
+              type: integer
+              description: the new version for the step being created/mutated
+        examples:
+          default:
+            value:
+              action: sous_vide
+              description: Cook at 30C for 300 hours
+              priority: essential
+              recipe: "123"
+              version: 1
+  responses:
+    "201":
+      description: Step has been created
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              step:
+                $ref: ../../../schemas/StepObject.yaml
+          example:
+            step:
+              id: "738771"
+              name: potato
+              recipe_id: "123"
+              type: vegetable
+  externalDocs:
+    url: ../../../docs/operations/CreateStep.md
+  x-code-samples:
+  - label: cURL
+    lang: sh
+    source: |-
+      curl --header "Content-Type: application/json" \
+        --request POST \
+        --header "Idempotency-Key: SrJylpBhtr7kJWMJ" \
+        --data '{"step":{"recipe": "123", "action":"boil", "description": "Boil potatoes until you can pierce them with a fork without much resistance"}}' \
+        -u sk_test_4eC39HqLyjWDarjtT1zdp7dc
+         https://api.cookbook.com/api/v2/steps.json

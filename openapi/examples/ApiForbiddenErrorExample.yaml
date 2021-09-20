@@ -1,0 +1,6 @@
+description: A 403 Forbidden response
+value:
+  errors:
+  - code: Forbidden
+  - source: version 2
+  - title: you are not permitted to access this resource

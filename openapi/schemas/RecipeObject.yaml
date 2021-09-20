@@ -1,0 +1,84 @@
+type: object
+allOf:
+- $ref: NutritionalValueObject.yaml
+- type: object
+  properties:
+    author_id:
+      type: string
+      description: the id of the user that created this recipe
+    created_at:
+      type: string
+      format: date
+      description: the date when this recipe was created
+    diet:
+      type: string
+      description: the diet type that the recipe is suitable for
+      enum:
+      - vegan
+      - non_vegan
+    id:
+      type: string
+      description: the id of the recipe
+    ingredients:
+      type: array
+      description: a list of ingredients and the amount required
+      items:
+        type: object
+        properties:
+          amount:
+            type: string
+          ingredient:
+            $ref: IngredientObject.yaml
+    is_private:
+      type: boolean
+      description: a boolean representing if this recipe has been marked as private
+        by the author
+    name:
+      type: string
+      description: the name of the recipe
+    steps:
+      type: array
+      description: the steps required to recreate this recipe
+      items:
+        $ref: StepObject.yaml
+  required:
+  - id
+  - name
+  - ingredients
+  - steps
+example:
+  author_id: "23430"
+  created_at: "2018-03-12"
+  id: "12345"
+  ingredients:
+  - amount: "1"
+    ingredient:
+      description: Eggplant, aubergine or brinjal is a plant species in the nightshade
+        family Solanaceae. Solanum melongena is grown worldwide for its edible fruit.
+        Most commonly purple, the spongy, absorbent fruit is used in several cuisines.
+      id: "3"
+      name: Eggplant
+      type: vegetable
+  - amount: 1/4 cup
+    ingredient:
+      description: Olive oil is a liquid obtained from olives a traditional tree crop
+        of the Mediterranean Basin. The oil is produced by pressing whole olives.
+      id: "3"
+      name: Olive oil
+      type: fat
+  is_private: true
+  name: Fried eggplant
+  steps:
+  - action: chop
+    description: chop the eggplant
+    id: "234"
+    priority: essential
+    version: 3
+  - action: pan_fry
+    description: fry the eggplant
+    id: "456"
+    priority: essential
+    version: 1
+externalDocs:
+  url: ../docs/schemas/RecipeObject.md
+x-resourceId: Recipes

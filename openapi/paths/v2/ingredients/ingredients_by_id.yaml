@@ -1,0 +1,116 @@
+parameters:
+- name: id
+  in: path
+  description: the id of the resource to act on
+  required: true
+  schema:
+    type: string
+    example: "12234"
+  example: "1223"
+get:
+  operationId: GetIngredientById
+  tags:
+  - Ingredients
+  summary: Retrieve an ingredient
+  description: Retrieves the ingredient corresponding to the given id
+  responses:
+    "200":
+      description: Get a single ingredient object
+      headers:
+        Rate-Limit:
+          description: The rate limit of this endpoint
+          schema:
+            type: string
+          example: "1250"
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              ingredient:
+                $ref: ../../../schemas/IngredientObject.yaml
+          examples:
+            default:
+              $ref: ../../../examples/IngredientByIdExample.yaml
+        application/xml:
+          schema:
+            type: object
+            properties:
+              ingredient:
+                type: string
+      x-zoas-tests:
+        ignore:
+        - content_type
+  x-code-samples:
+  - label: cURL
+    lang: sh
+    source: |-
+      curl https://api.cookbook.com/api/v2/ingredients/1.json \
+      -u sk_test_4eC39HqLyjWDarjtT1zdp7dc
+put:
+  operationId: UpdateIngredientById
+  tags:
+  - Ingredients
+  summary: Update an ingredient
+  description: Updates the ingredient corresponding to the given id
+  requestBody:
+    content:
+      application/json:
+        schema:
+          type: object
+          properties:
+            ingredient:
+              $ref: ../../../schemas/IngredientInput.yaml
+        examples:
+          default:
+            value:
+              ingredient:
+                description: this is a new description
+  responses:
+    "204":
+      description: Ingredient has been updated
+  x-code-samples:
+  - description: For clarity, the example places the JSON in a separate file and imports
+      it into the cURL statement.
+    label: cURL
+    lang: sh
+    sampleFile:
+      content: |-
+        {
+          "ingredient": {
+            "description": "this is a new description"
+          }
+        }
+      format: json
+      name: body.json
+    source: |-
+      curl --header "Content-Type: application/json" \
+        --request PUT \
+        --data @body.json \
+        -u sk_test_4eC39HqLyjWDarjtT1zdp7dc
+         https://api.cookbook.com/api/v2/ingredients/1.json
+  - label: Go
+    lang: go
+    source: |-
+      f, err := os.Open("body.json")
+      if err != nil {
+        // handle err
+      }
+      defer f.Close()
+      req, err := http.NewRequest("PUT", "https://api.cookbook.com/api/v2/ingredients/1.json", f)
+      if err != nil {
+        // handle err
+      }
+      req.SetBasicAuth("sk_test_4eC39HqLyjWDarjtT1zdp7dc", "<PASSWORD>")
+      req.Header.Set("Content-Type", "application/json")
+      resp, err := http.DefaultClient.Do(req)
+      if err != nil {
+        // handle err
+      }
+      defer resp.Body.Close()
+  x-zoas-tests:
+    skip:
+    - status_code
+x-zoas-tests:
+  skip:
+  - headers_inclusion

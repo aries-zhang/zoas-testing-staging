@@ -1,0 +1,129 @@
+parameters:
+- name: lang
+  in: query
+  description: The language this step will be translated inaa
+  schema:
+    type: string
+    example: es
+  example: es
+- name: id
+  in: path
+  description: the id of the resource to act on
+  required: true
+  schema:
+    type: string
+    example: "1223"
+  example: "1223"
+- name: Api-Version
+  in: header
+  description: The version of the API to use
+  schema:
+    type: string
+    format: date
+    example: "2019-12-03"
+  example: "2019-12-03"
+get:
+  operationId: GetStepById
+  tags:
+  - Steps
+  summary: Get a step
+  description: Retrieves the step corresponding to the given id
+  responses:
+    "200":
+      description: Get a single step object
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              data:
+                $ref: ../../../schemas/StepObject.yaml
+          example:
+            data:
+              id: "12345"
+              name: potato
+              type: vegetable
+  x-code-samples:
+  - label: cURL
+    lang: sh
+    source: |-
+      curl https://api.cookbook.com/api/v2/steps/1.json \
+      -u sk_test_4eC39HqLyjWDarjtT1zdp7dc
+  x-operation-aliases:
+  - GET /api/v2/recipes/{recipe_id}/steps/{step_id}
+put:
+  operationId: UpdateStepById
+  tags:
+  - Steps
+  summary: update a step
+  description: Updates the step corresponding to the given id
+  requestBody:
+    content:
+      application/json:
+        schema:
+          type: object
+          properties:
+            step:
+              $ref: ../../../schemas/StepInput.yaml
+        examples:
+          default:
+            $ref: ../../../examples/UpdateStepByIdRequestBodyExample.yaml
+  responses:
+    "204":
+      description: Step has been updated
+    "401":
+      description: User is not authorised to access this resource
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              errors:
+                type: array
+                items:
+                  $ref: ../../../schemas/ApiErrorObject.yaml
+          examples:
+            default:
+              value:
+                errors:
+                - code: something-went-wrong
+                  source: some-resource
+                  title: Something Went Wrong
+    "404":
+      description: Step was not found
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              errors:
+                type: array
+                items:
+                  $ref: ../../../schemas/ApiErrorObject.yaml
+          examples:
+            default:
+              $ref: ../../../examples/ApiNotFoundErrorExample.yaml
+    "409":
+      description: There was a conflict when updating a step
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              errors:
+                type: array
+                items:
+                  $ref: ../../../schemas/ApiErrorObject.yaml
+          examples:
+            default:
+              $ref: ../../../examples/ApiConflictErrorExample.yaml
+  x-code-samples:
+  - label: cURL
+    lang: sh
+    source: |-
+      curl --header "Content-Type: application/json" \
+        --request PUT \
+        --header "Idempotency-Key: SrJylpBhtr7kJWMJ" \
+        --data '{"step":{"action":"boil"}}' \
+        -u sk_test_4eC39HqLyjWDarjtT1zdp7dc
+         https://api.cookbook.com/api/v2/steps/1.json

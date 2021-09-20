@@ -1,0 +1,31 @@
+type: object
+allOf:
+- $ref: NutritionalValueObject.yaml
+- type: object
+  properties:
+    description:
+      type: string
+      description: a human readable description of the ingredient
+    id:
+      type: string
+      description: the id of the ingredient
+    name:
+      type: string
+      description: the name of the ingredient
+    type:
+      type: string
+      description: the type of the ingredient, not limited by enum (e.g vegetable,
+        fat, meat)
+  required:
+  - id
+  - name
+  - type
+example:
+  description: Turmeric (Curcuma longa) is a spice, widely used in Asian cooking.
+    It is a rhizomatous herbaceous perennial plant, in the ginger family, Zingiberaceae.
+  id: "689"
+  name: Turmeric
+  type: spice
+externalDocs:
+  url: ../docs/schemas/IngredientObject.md
+x-resourceId: Ingredients
