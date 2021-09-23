@@ -11,18 +11,9 @@ This repository is maintained by the **API Experience** team.
 | Slack  | [#redback-team](https://zendesk.slack.com/messages/CL45RMA92)     |
 | GitHub | [@zendesk/redback](https://github.com/orgs/zendesk/teams/redback) |
 
-## Simulate a call to publish documentation only - This copies markdown files to api-docs and developer-docs in staging branch.
-
-Notes:
-
-- You will need a [personal access token](https://github.com/settings/tokens) generated for your GitHub account, which is then enabled for SSO against the https://github.com/zendesk organization. Use this in place of `PAT_TOKEN` in the `curl` call below.
-- Call is simulated against the following `foodjira/recipes` repository OpenAPI [commit](https://github.com/foodjira/recipes/commit/f4b0368aab44634d7c6ebb0740ae7c37af1382aa).
-
-```sh
-curl \
-  --data '{"event_type":"publish","client_payload": {"repository":"foodjira/recipes","commitSha1":"f4b0368aab44634d7c6ebb0740ae7c37af1382aa","publishBranch":"staging"}}' \
-  --header "Accept: application/vnd.github.v3+json" \
-  --header "Authorization: token PAT_TOKEN" \
-  --request POST \
-    https://api.github.com/repos/zendesk/zoas-testing-staging/dispatches
-```
+## Simulate a call to publish documentation - This copies markdown files to api-docs in staging branch.
+- You can create PR in this repository and test all the features you need.
+- This repository has an installed Github application [zoas-server-staging](https://github.com/apps/zoas-server-staging) which is deployed in [Pod998](https://spinnaker.zende.sk/#/applications/zoas/executions?pipeline=pod998). [Pod998](https://spinnaker.zende.sk/#/applications/zoas/executions?pipeline=pod998) is the staging environment for ZOAS
+- Created PR (unmerged) will trigger the check suite against ZOAS server in [Pod998](https://spinnaker.zende.sk/#/applications/zoas/executions?pipeline=pod998) and you should be able to see the result in checks details section
+- Any merged PRs will trigger documentation publish flow against [api-docs](https://github.com/zendesk/api-docs) repository with `staging branch only`. You should be able to see the published docs in [zoas-testing-staging in api-docs staging branch](https://github.com/zendesk/api-docs/tree/staging/docs/zendesk/zoas-testing-staging)
+- PRs in [zoas-testing-staging](https://github.com/zendesk/zoas-testing-staging) does not support documentation publish in [developer-docs](https://github.com/zendesk/developer-docs) repository
