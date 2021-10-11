@@ -2,4 +2,4 @@ This operation supports idempotency for safely retrying requests without acciden
 
 To perform an idempotent request, provide an additional IdempotencyKey header to the request options.
 
-This is a test message that we can change all the time. :)
+This is a test message that we can change all the time. :S
