@@ -3,9 +3,9 @@ get:
   tags:
   - Recipes
   summary: List recipes
-  description: List all the recipes with query parameters!
+  description: List all the recipes!
   parameters:
-  - name: sort1
+  - name: sort
     in: query
     description: the key to sort recipes by
     required: true
