@@ -3,7 +3,7 @@ get:
   tags:
   - Recipes
   summary: List recipes
-  description: List all the recipes!
+  description: List all the recipes with query parameters!
   parameters:
   - name: sort
     in: query
