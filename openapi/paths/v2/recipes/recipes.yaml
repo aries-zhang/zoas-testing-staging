@@ -5,7 +5,7 @@ get:
   summary: List recipes
   description: List all the recipes with query parameters!
   parameters:
-  - name: sort
+  - name: sort1
     in: query
     description: the key to sort recipes by
     required: true
