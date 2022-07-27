@@ -19,11 +19,11 @@ jobs:
         with:
           repository: zendesk/redback-github-actions
           token: ${{ secrets.ORG_GITHUB_WRITE_TOKEN }}
-          path: .github/redback-github-actions
+          path: .github/redback-github-actions/tree/RED-1170-Add-Postman-In-Github-Action
       - name: Generate documents
         env:
           GITHUB_ACCESS_TOKEN: ${{ secrets.ORG_GITHUB_WRITE_TOKEN }}
-        uses: ./.github/redback-github-actions/actions/zoas-doc-publish
+        uses: ./.github/redback-github-actions/tree/RED-1170-Add-Postman-In-Github-Action/actions/zoas-doc-publish
         with:
           documentBaseDir: docs/
           visibility: "\"\""
