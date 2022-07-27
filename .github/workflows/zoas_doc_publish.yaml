@@ -2,8 +2,6 @@ name: ZOAS documentation publish
 on:
   repository_dispatch:
     types: publish
-  pull_request:
-    types: [opened, reopened, synchronize]
 env:
   ZOAS_RELEASE_TAG: latest
 
@@ -22,7 +20,7 @@ jobs:
           repository: zendesk/redback-github-actions
           token: ${{ secrets.ORG_GITHUB_TOKEN }}
           path: .github/redback-github-actions
-          ref: RED-1170-Add-Postman-In-Github-Action
+          ref: main
       - name: Generate documents
         env:
           GITHUB_ACCESS_TOKEN: ${{ secrets.ORG_GITHUB_TOKEN }}
