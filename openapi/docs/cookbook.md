@@ -1,5 +1,5 @@
 ## CookBook REST API
-This is an API that allows you to access a collectively created CookBooks
+This is an API that allows you to access a collectively created CookBooks.
 Hello from new GitHub Action in redback-github-actions :D
 
 ### Features
