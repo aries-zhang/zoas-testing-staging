@@ -26,11 +26,12 @@ jobs:
       - name: Generate documents
         env:
           GITHUB_ACCESS_TOKEN: ${{ secrets.ORG_GITHUB_TOKEN }}
+          POSTMAN_API_KEY: ${{ secrets.POSTMAN_API_KEY }}
         uses: ./.github/redback-github-actions/actions/zoas-doc-publish
         with:
           documentBaseDir: docs/
           visibility: "\"\""
           mappingPath: .github/workflows/hello.csv
-          POSTMAN_API_KEY: ${{ secrets.POSTMAN_API_KEY }}
+          postmanApiKey: ${{ secrets.POSTMAN_API_KEY }}
 
       
