@@ -31,5 +31,6 @@ jobs:
           documentBaseDir: docs/
           visibility: "\"\""
           mappingPath: .github/workflows/hello.csv
+          POSTMAN_API_KEY: ${{ secrets.POSTMAN_API_KEY }}
 
       
