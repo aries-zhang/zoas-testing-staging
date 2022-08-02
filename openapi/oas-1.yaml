@@ -1,7 +1,7 @@
 openapi: 3.0.2
 info:
   title: CookBook REST API
-  description: CookBook REST API allows you to manage your own recipes
+  description: CookBook REST API allows you to manage your own recipes. Add Postman.
   version: "1.0"
 tags:
 - name: Recipes
