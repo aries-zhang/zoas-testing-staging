@@ -1,7 +1,7 @@
 parameters:
 - name: id
   in: path
-  description: the id of the resource to act on
+  description: the id of the resource to act against
   required: true
   schema:
     type: string
