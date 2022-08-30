@@ -1,6 +1,6 @@
 openapi: 3.0.2
 info:
-  title: CookBook REST API Test by Aries
+  title: CookBook REST API Test by Aries 22
   description: CookBook REST API allows you to manage your own recipes.
   version: "1.0"
 tags:
